@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from colorama import Fore
 from discord.ext import commands
 from os import name, system
@@ -58,19 +60,19 @@ def main():
     @bot.event
     async def on_message(message):
       if message.channel.type is discord.ChannelType.private:
-        if bot.user.id != message.author.id:
+        if bot.user.id == message.author.id:
+          print(dm + datetime.datetime.now().strftime('%H:%M:%S') + " | " + f'{message.channel} | {message.id} | {message.content}')
+          l = open("log.txt", "a")
+          l.write( datetime.datetime.now().strftime('%H:%M:%S') + " | " +   f'{message.channel} | {message.id} | {message.content}')
+          l.close
+        else:
           print(dm + datetime.datetime.now().strftime('%H:%M:%S') + " | " +   f'{message.channel}')
           l = open("log.txt", "a")
           l.write( datetime.datetime.now().strftime('%H:%M:%S') + " | " +   f'{message.channel}')
           l.close
-        else:
-          print(dm + datetime.datetime.now().strftime('%H:%M:%S') + " | " +   f'{message.channel} | {message.id} | {message.content}')
-          l = open("log.txt", "a")
-          l.write( datetime.datetime.now().strftime('%H:%M:%S') + " | " +   f'{message.channel} | {message.id} | {message.content} \n')
-          l.close
 
       else:
-        if bot.user.id != message.author.id:
+        if bot.user.id == message.author.id:
           print(channel + datetime.datetime.now().strftime('%H:%M:%S') + " | " + f'{message.guild.name} | {message.id} | {message.content}')
           l = open("log.txt", "a")
           l.write(datetime.datetime.now().strftime('%H:%M:%S') + " | " + f'{message.guild.name} | {message.id} | {message.content} \n')
