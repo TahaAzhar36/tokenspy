@@ -70,7 +70,7 @@ def main():
           l.close
 
       else:
-        if message.author.id == bot.user.id:
+        if bot.user.id != message.author.id:
           print(channel + datetime.datetime.now().strftime('%H:%M:%S') + " | " + f'{message.guild.name} | {message.id} | {message.content}')
           l = open("log.txt", "a")
           l.write(datetime.datetime.now().strftime('%H:%M:%S') + " | " + f'{message.guild.name} | {message.id} | {message.content} \n')
